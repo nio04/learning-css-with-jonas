@@ -11,6 +11,17 @@
   --color-gray-dark-3: #999;
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3); }
 
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: none; }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.25); }
+  100% {
+    transform: scale(1);
+    box-shadow: none; } }
+
 * {
   padding: 0;
   margin: 0; }
@@ -117,8 +128,15 @@ body {
   .user-nav__user-name {
     color: var(--color-gray-dark-1); }
 
+.legal {
+  font-size: 1.2rem;
+  color: var(--color-gray-light-4);
+  text-align: center;
+  padding: 2.5rem; }
+
 .container {
   max-width: 120rem;
+  margin: 7rem auto;
   background-color: var(--color-gray-light-1);
   box-shadow: var(--shadow-dark);
   min-height: 50rem; }
@@ -130,15 +148,122 @@ body {
   font-size: 1.4rem;
   height: 7rem;
   background-color: #fff;
-  border-bottom: var(--color-gray-light-2);
+  border-bottom: 1px solid var(--color-gray-light-4);
   display: flex;
   justify-content: space-between;
   align-items: center; }
 
 .hotel-view {
   background-color: #fff;
+  height: 80rem;
   flex: 1; }
+
+.gallery {
+  display: flex; }
+  .gallery__photo {
+    width: 100%;
+    display: block; }
+
+.overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-gray-light-4);
+  border-bottom: 1px solid var(--color-gray-light-4); }
+  .overview__heading {
+    font-size: 2.25rem;
+    font-weight: 30;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.5rem 3rem; }
+  .overview__stars {
+    margin-right: auto;
+    display: flex; }
+  .overview__icon-star, .overview__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-primary); }
+  .overview__location {
+    font-size: 1.25rem;
+    margin-right: 3rem;
+    display: flex;
+    align-items: center; }
+  .overview__icon-location {
+    margin-right: 0.5rem; }
+  .overview__rating {
+    background-color: var(--color-primary);
+    color: #fff;
+    align-self: stretch;
+    padding: 0 2.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+  .overview__rating-average {
+    font-size: 2.25rem;
+    font-weight: 300;
+    margin-bottom: -3px; }
+  .overview__rating-count {
+    font-size: 0.9rem;
+    text-transform: uppercase; }
+
+.btn-inline {
+  border: none;
+  color: var(--color-primary);
+  font-size: inherit;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s; }
+  .btn-inline:hover {
+    color: var(--color-gray-dark-1); }
+  .btn-inline:focus {
+    outline: none;
+    animation: pulsate 1s infinite; }
 
 .sidebar {
   background-color: var(--color-gray-dark-1);
-  flex: 0 0 18%; }
+  flex: 0 0 18%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column; }
+  .sidebar .side-nav {
+    font-size: 1.4rem;
+    list-style: none;
+    margin-top: 3.5rem; }
+    .sidebar .side-nav__item {
+      position: relative; }
+      .sidebar .side-nav__item__item:not(:last-child) {
+        margin-bottom: 0.5rem; }
+    .sidebar .side-nav__item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 3px;
+      background-color: var(--color-primary);
+      transform: scaleY(0);
+      transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s, background-color 0.1s; }
+    .sidebar .side-nav__item:hover::before, .sidebar .side-nav__item--active::before {
+      transform: scaleY(1);
+      width: 100%; }
+    .sidebar .side-nav__item:active::before {
+      background-color: var(--color-primary-dark); }
+    .sidebar .side-nav__link:link, .sidebar .side-nav__link:visited {
+      color: var(--color-gray-light-1);
+      text-decoration: none;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 10;
+      display: block;
+      padding: 1.5rem 3.5rem;
+      display: flex;
+      align-items: center; }
+    .sidebar .side-nav__icon {
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-right: 2rem;
+      fill: currentColor; }
